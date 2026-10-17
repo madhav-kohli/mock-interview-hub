@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Bot, Github, Award, Sparkles, CheckCircle2, ShieldCheck, Heart, ExternalLink, User, Volume2, ArrowRight } from "lucide-react";
+import { Bot, Github, Award, Sparkles, CheckCircle2, ShieldCheck, Heart, ExternalLink, User, ArrowRight } from "lucide-react";
 import { TeacherRubricModal } from "./TeacherRubricModal.tsx";
 import { DeveloperModal } from "./DeveloperModal.tsx";
 
@@ -117,62 +117,29 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* ================= DEDICATED DEVELOPER CARD AT THE VERY BOTTOM ================= */}
-          <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-emerald-500/40 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6 mb-8">
-            <div className="flex items-center gap-4 text-center sm:text-left">
-              <div
-                onClick={() => setShowDevModal(true)}
-                className="relative w-16 h-20 sm:w-20 sm:h-24 rounded-2xl overflow-hidden border-2 border-emerald-400 shadow-md shrink-0 cursor-pointer group"
-              >
-                <img
-                  src="/developer-madhav.jpg"
-                  alt="Madhav Kohli"
-                  className="w-full h-full object-cover object-top group-hover:scale-110 transition duration-300"
-                />
-              </div>
-
-              <div>
-                <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider flex items-center justify-center sm:justify-start gap-1 mb-0.5">
-                  <User size={12} /> Lead Developer
-                </span>
-                <h4 className="text-base sm:text-lg font-black text-white">
-                  Madhav Kohli
-                </h4>
-                <p className="text-slate-400 text-xs mt-0.5">
-                  B.Tech CSE @ JMIT &bull; Full Stack & Backend Web Developer &bull; 300+ DSA Solved
-                </p>
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => setShowDevModal(true)}
-              className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer shrink-0"
-            >
-              <Volume2 size={16} />
-              <span>Open Developer Profile & Voice Bio</span>
-              <ArrowRight size={16} />
-            </button>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-            <p>
-              &copy; {new Date().getFullYear()} InterviewIQ.AI &bull; Crafted by <strong>Madhav Kohli</strong>.
+          {/* ================= CLEAN SIMPLE BUTTON AT THE VERY BOTTOM ================= */}
+          <div className="pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-800/80">
+            <p className="text-[11px] text-slate-500 text-center sm:text-left">
+              &copy; {new Date().getFullYear()} InterviewIQ.AI &bull; Full-Stack Capstone Project.
             </p>
-            <div className="flex items-center gap-4">
+
+            {/* The single clean "Know the Developer" Button */}
+            <div className="flex items-center gap-3">
               <button
+                type="button"
                 onClick={() => setShowDevModal(true)}
-                className="hover:text-emerald-400 transition cursor-pointer text-emerald-400 font-bold"
+                className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer"
               >
-                Developer Info & Voice Bio
+                <User size={15} />
+                <span>Know the Developer</span>
               </button>
-              <span>&bull;</span>
+
               <button
+                type="button"
                 onClick={() => setShowRubric(true)}
-                className="hover:text-slate-300 transition underline cursor-pointer"
+                className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition cursor-pointer border border-slate-700"
               >
-                Academic Rubric
+                Teacher Rubric
               </button>
             </div>
           </div>

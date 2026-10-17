@@ -8,7 +8,6 @@ import { Navbar } from "../components/Navbar.tsx";
 import { Footer } from "../components/Footer.tsx";
 import { AuthModal } from "../components/AuthModal.tsx";
 import { TeacherRubricModal } from "../components/TeacherRubricModal.tsx";
-import { DeveloperModal } from "../components/DeveloperModal.tsx";
 import {
   Bot,
   Sparkles,
@@ -22,17 +21,8 @@ import {
   ShieldCheck,
   ChevronRight,
   GraduationCap,
-  Play,
-  PlayCircle,
   Pause,
-  RotateCcw,
-  Cpu,
-  Brain,
-  Zap,
-  ArrowRight,
-  User,
-  Trophy,
-  Code2
+  ArrowRight
 } from "lucide-react";
 
 export default function Home() {
@@ -42,7 +32,6 @@ export default function Home() {
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showRubricModal, setShowRubricModal] = useState(false);
-  const [showDevModal, setShowDevModal] = useState(false);
 
   // Interactive Demo Question Player State on the Hero
   const [isPlayingDemoAudio, setIsPlayingDemoAudio] = useState(false);
@@ -395,7 +384,6 @@ export default function Home() {
 
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
       <TeacherRubricModal isOpen={showRubricModal} onClose={() => setShowRubricModal(false)} />
-      <DeveloperModal isOpen={showDevModal} onClose={() => setShowDevModal(false)} />
     </div>
   );
 }
