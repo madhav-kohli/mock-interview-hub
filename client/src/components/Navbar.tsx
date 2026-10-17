@@ -6,6 +6,7 @@ import { setUserData, updateCredits } from "../redux/userSlice.ts";
 import { api } from "../services/api.ts";
 import { AuthModal } from "./AuthModal.tsx";
 import { TeacherRubricModal } from "./TeacherRubricModal.tsx";
+import { DeveloperModal } from "./DeveloperModal.tsx";
 import {
   Bot,
   Coins,
@@ -20,7 +21,9 @@ import {
   UserCheck,
   CreditCard,
   Menu,
-  X
+  X,
+  Code2,
+  User
 } from "lucide-react";
 
 export const Navbar: React.FC = () => {
@@ -31,6 +34,7 @@ export const Navbar: React.FC = () => {
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showRubricModal, setShowRubricModal] = useState(false);
+  const [showDevModal, setShowDevModal] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -62,7 +66,7 @@ export const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <div className="flex items-center gap-8">
+            <div className="flex items-center gap-6 lg:gap-8">
               <Link to="/" className="flex items-center gap-3 group">
                 <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-slate-950 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition">
                   <Bot size={22} className="stroke-[2.5]" />
@@ -83,10 +87,10 @@ export const Navbar: React.FC = () => {
               </Link>
 
               {/* Desktop Nav Links */}
-              <nav className="hidden md:flex items-center gap-1">
+              <nav className="hidden lg:flex items-center gap-1">
                 <Link
                   to="/"
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition ${
+                  className={`px-3 py-2 rounded-xl text-xs font-semibold transition ${
                     location.pathname === "/"
                       ? "text-emerald-400 bg-emerald-500/10"
                       : "text-slate-300 hover:text-white hover:bg-slate-800/50"
@@ -96,7 +100,7 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   to="/interview"
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
+                  className={`px-3 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
                     location.pathname === "/interview"
                       ? "text-emerald-400 bg-emerald-500/10"
                       : "text-slate-300 hover:text-white hover:bg-slate-800/50"
@@ -106,17 +110,17 @@ export const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   to="/history"
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
+                  className={`px-3 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
                     location.pathname === "/history"
                       ? "text-emerald-400 bg-emerald-500/10"
                       : "text-slate-300 hover:text-white hover:bg-slate-800/50"
                   }`}
                 >
-                  <History size={14} /> Analytics & History
+                  <History size={14} /> History
                 </Link>
                 <Link
                   to="/pricing"
-                  className={`px-3.5 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
+                  className={`px-3 py-2 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 ${
                     location.pathname === "/pricing"
                       ? "text-emerald-400 bg-emerald-500/10"
                       : "text-slate-300 hover:text-white hover:bg-slate-800/50"
@@ -127,7 +131,7 @@ export const Navbar: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowRubricModal(true)}
-                  className="px-3.5 py-2 rounded-xl text-xs font-semibold text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/20 transition flex items-center gap-1.5 ml-1"
+                  className="px-3 py-2 rounded-xl text-xs font-semibold text-teal-300 bg-teal-500/10 hover:bg-teal-500/20 border border-teal-500/20 transition flex items-center gap-1.5 ml-1 cursor-pointer"
                 >
                   <Award size={14} /> Teacher Rubric
                 </button>
@@ -136,6 +140,20 @@ export const Navbar: React.FC = () => {
 
             {/* Right side controls */}
             <div className="flex items-center gap-3">
+              {/* Developer Profile Pill Button */}
+              <button
+                type="button"
+                onClick={() => setShowDevModal(true)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/10 to-slate-900 border border-emerald-500/40 hover:border-emerald-400 text-xs font-bold text-white transition shadow-sm group cursor-pointer"
+                title="View Developer Profile: Madhav Kohli"
+              >
+                <div className="w-5 h-5 rounded-full overflow-hidden border border-emerald-400 shrink-0">
+                  <img src="/developer-madhav.jpg" alt="Madhav Kohli" className="w-full h-full object-cover object-top" />
+                </div>
+                <span className="hidden sm:inline text-emerald-300 group-hover:text-emerald-200">Developer</span>
+                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping hidden sm:inline"></span>
+              </button>
+
               {/* Credits counter */}
               <div className="relative group">
                 <Link
@@ -157,7 +175,7 @@ export const Navbar: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setShowUserDropdown(!showUserDropdown)}
-                    className="flex items-center gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-full bg-slate-900 border border-slate-700 hover:border-slate-600 transition"
+                    className="flex items-center gap-2 p-1.5 sm:px-3 sm:py-1.5 rounded-full bg-slate-900 border border-slate-700 hover:border-slate-600 transition cursor-pointer"
                   >
                     <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 font-bold text-xs uppercase shadow-sm overflow-hidden">
                       {userData.avatar ? (
@@ -200,7 +218,7 @@ export const Navbar: React.FC = () => {
                             setShowUserDropdown(false);
                             navigate("/history");
                           }}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 hover:text-white transition text-left"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 hover:text-white transition text-left cursor-pointer"
                         >
                           <History size={14} className="text-emerald-400" />
                           <span>Interview History & Reports</span>
@@ -210,9 +228,21 @@ export const Navbar: React.FC = () => {
                           type="button"
                           onClick={() => {
                             setShowUserDropdown(false);
+                            setShowDevModal(true);
+                          }}
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-emerald-300 transition text-left cursor-pointer"
+                        >
+                          <User size={14} className="text-emerald-400" />
+                          <span>About Developer (Madhav Kohli)</span>
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setShowUserDropdown(false);
                             navigate("/pricing");
                           }}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 hover:text-white transition text-left"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 hover:text-white transition text-left cursor-pointer"
                         >
                           <CreditCard size={14} className="text-teal-400" />
                           <span>Add More Credits</span>
@@ -221,7 +251,7 @@ export const Navbar: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleQuickAddCredits}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 hover:text-white transition text-left"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-slate-300 hover:text-white transition text-left cursor-pointer"
                         >
                           <Plus size={14} className="text-amber-400" />
                           <span>Quick Top-up +100 Credits (Demo)</span>
@@ -231,7 +261,7 @@ export const Navbar: React.FC = () => {
                           <button
                             type="button"
                             onClick={handleSwitchToTeacher}
-                            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-emerald-300 transition text-left"
+                            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-emerald-300 transition text-left cursor-pointer"
                           >
                             <GraduationCap size={14} className="text-emerald-400" />
                             <span>Switch to Faculty / Teacher Mode</span>
@@ -243,7 +273,7 @@ export const Navbar: React.FC = () => {
                         <button
                           type="button"
                           onClick={handleLogout}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-red-500/10 text-red-400 hover:text-red-300 transition text-left"
+                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-red-500/10 text-red-400 hover:text-red-300 transition text-left cursor-pointer"
                         >
                           <LogOut size={14} />
                           <span>Log Out</span>
@@ -260,14 +290,14 @@ export const Navbar: React.FC = () => {
                       const teacherUser = api.quickDemoLogin("teacher");
                       teacherUser.then((u) => dispatch(setUserData(u)));
                     }}
-                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-emerald-300 border border-emerald-500/30 text-xs font-semibold transition"
+                    className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-800 text-emerald-300 border border-emerald-500/30 text-xs font-semibold transition cursor-pointer"
                   >
                     <GraduationCap size={14} /> Teacher Demo
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowAuthModal(true)}
-                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5"
+                    className="px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs shadow-lg shadow-emerald-500/20 transition flex items-center gap-1.5 cursor-pointer"
                   >
                     <UserCheck size={14} /> Sign In
                   </button>
@@ -278,7 +308,7 @@ export const Navbar: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="md:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white"
+                className="lg:hidden p-2 rounded-xl bg-slate-900 border border-slate-800 text-slate-400 hover:text-white cursor-pointer"
               >
                 {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
@@ -288,7 +318,7 @@ export const Navbar: React.FC = () => {
 
         {/* Mobile menu drawer */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-slate-800 bg-slate-950/95 px-4 pt-3 pb-6 space-y-2">
+          <div className="lg:hidden border-t border-slate-800 bg-slate-950/95 px-4 pt-3 pb-6 space-y-2">
             <Link
               to="/"
               onClick={() => setMobileMenuOpen(false)}
@@ -321,9 +351,19 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
+                setShowDevModal(true);
+              }}
+              className="w-full text-left px-3 py-2 rounded-xl text-sm font-semibold text-emerald-300 hover:bg-slate-800 flex items-center gap-2 cursor-pointer"
+            >
+              <User size={15} /> Developer Info (Madhav Kohli)
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
                 setShowRubricModal(true);
               }}
-              className="w-full text-left px-3 py-2 rounded-xl text-sm font-semibold text-teal-300 hover:bg-slate-800"
+              className="w-full text-left px-3 py-2 rounded-xl text-sm font-semibold text-teal-300 hover:bg-slate-800 cursor-pointer"
             >
               Academic Rubric & Specs
             </button>
@@ -331,11 +371,10 @@ export const Navbar: React.FC = () => {
         )}
       </header>
 
-      {/* Auth Modal */}
+      {/* Modals */}
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
-
-      {/* Teacher Rubric Modal */}
       <TeacherRubricModal isOpen={showRubricModal} onClose={() => setShowRubricModal(false)} />
+      <DeveloperModal isOpen={showDevModal} onClose={() => setShowDevModal(false)} />
     </>
   );
 };

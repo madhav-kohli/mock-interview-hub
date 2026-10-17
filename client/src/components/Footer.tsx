@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Bot, Github, Award, Sparkles, CheckCircle2, ShieldCheck, Heart, ExternalLink } from "lucide-react";
+import { Bot, Github, Award, Sparkles, CheckCircle2, ShieldCheck, Heart, ExternalLink, User } from "lucide-react";
 import { TeacherRubricModal } from "./TeacherRubricModal.tsx";
+import { DeveloperModal } from "./DeveloperModal.tsx";
 
 export const Footer: React.FC = () => {
   const [showRubric, setShowRubric] = useState(false);
+  const [showDevModal, setShowDevModal] = useState(false);
 
   return (
     <>
@@ -24,11 +26,27 @@ export const Footer: React.FC = () => {
               <p className="text-slate-400 text-xs leading-relaxed max-w-md">
                 An advanced full-stack AI platform built to deliver realistic, voice-interactive mock technical and behavioral interviews with real-time feedback, speech recognition, and downloadable performance reports.
               </p>
-              <div className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 text-[11px] text-slate-300 max-w-md flex items-center gap-3">
-                <Award size={20} className="text-emerald-400 shrink-0" />
-                <div>
-                  <strong className="text-white block">Project Submission Ready</strong>
-                  <span>Engineered with production-grade architecture, Firebase authentication, and responsive design.</span>
+
+              {/* Developer Profile Card */}
+              <div
+                onClick={() => setShowDevModal(true)}
+                className="p-3.5 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-850 border border-emerald-500/30 hover:border-emerald-400/60 transition max-w-md flex items-center gap-3.5 cursor-pointer group shadow-lg"
+              >
+                <div className="w-12 h-12 rounded-xl overflow-hidden border border-emerald-400 shrink-0 group-hover:scale-105 transition">
+                  <img src="/developer-madhav.jpg" alt="Madhav Kohli" className="w-full h-full object-cover object-top" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between">
+                    <strong className="text-white block font-bold text-sm group-hover:text-emerald-300 transition">
+                      Developed by Madhav Kohli
+                    </strong>
+                    <span className="text-[10px] text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+                      View Bio & Audio &rarr;
+                    </span>
+                  </div>
+                  <span className="text-[11px] text-slate-400 block mt-0.5">
+                    B.Tech CSE &bull; Full Stack & Backend Web Developer
+                  </span>
                 </div>
               </div>
             </div>
@@ -61,8 +79,16 @@ export const Footer: React.FC = () => {
                 </li>
                 <li>
                   <button
+                    onClick={() => setShowDevModal(true)}
+                    className="text-emerald-400 hover:text-emerald-300 transition text-left flex items-center gap-1 font-medium cursor-pointer"
+                  >
+                    <User size={13} /> Developer Profile (Voice Bio) &rarr;
+                  </button>
+                </li>
+                <li>
+                  <button
                     onClick={() => setShowRubric(true)}
-                    className="text-emerald-400 hover:text-emerald-300 transition text-left flex items-center gap-1 font-medium"
+                    className="text-teal-400 hover:text-teal-300 transition text-left flex items-center gap-1 font-medium cursor-pointer"
                   >
                     Teacher Rubric & Specs &rarr;
                   </button>
@@ -87,7 +113,7 @@ export const Footer: React.FC = () => {
                   "Tailwind CSS v4",
                   "jsPDF Reports",
                   "Motion",
-                  "DiceBear Avatars"
+                  "MongoDB Atlas"
                 ].map((tech) => (
                   <span
                     key={tech}
@@ -116,19 +142,21 @@ export const Footer: React.FC = () => {
           {/* Bottom Bar */}
           <div className="pt-8 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
             <p>
-              &copy; {new Date().getFullYear()} InterviewIQ.AI &bull; Full-Stack Capstone Project.
+              &copy; {new Date().getFullYear()} InterviewIQ.AI &bull; Created by <strong>Madhav Kohli</strong>.
             </p>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1.5 text-emerald-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
-                System Status: All Engines Operational
-              </span>
+              <button
+                onClick={() => setShowDevModal(true)}
+                className="hover:text-emerald-400 transition cursor-pointer text-emerald-400/90 font-medium"
+              >
+                Developer Info
+              </button>
               <span>&bull;</span>
               <button
                 onClick={() => setShowRubric(true)}
-                className="hover:text-slate-300 transition underline"
+                className="hover:text-slate-300 transition underline cursor-pointer"
               >
-                View Architecture Rubric
+                Academic Rubric
               </button>
             </div>
           </div>
@@ -136,6 +164,7 @@ export const Footer: React.FC = () => {
       </footer>
 
       <TeacherRubricModal isOpen={showRubric} onClose={() => setShowRubric(false)} />
+      <DeveloperModal isOpen={showDevModal} onClose={() => setShowDevModal(false)} />
     </>
   );
 };
