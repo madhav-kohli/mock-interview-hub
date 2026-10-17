@@ -145,11 +145,10 @@ export default function Home() {
 
               <button
                 type="button"
-                onClick={() => setShowDevModal(true)}
-                className="px-6 py-4 rounded-2xl bg-gradient-to-r from-slate-900 to-slate-850 hover:bg-slate-800 text-white border border-emerald-500/30 font-semibold text-sm sm:text-base flex items-center gap-2.5 transition cursor-pointer"
+                onClick={() => navigate("/history")}
+                className="px-6 py-4 rounded-2xl bg-slate-900/60 hover:bg-slate-800/80 text-slate-300 border border-slate-800 font-semibold text-sm sm:text-base flex items-center gap-2 transition cursor-pointer"
               >
-                <User size={18} className="text-emerald-400" />
-                <span>Meet Developer (Madhav)</span>
+                <span>View Past Analytics</span>
               </button>
             </div>
 
@@ -247,62 +246,6 @@ export default function Home() {
                     </p>
                   </div>
                 )}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ================= MEET DEVELOPER SPOTLIGHT SECTION ================= */}
-        <section className="py-16 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 px-4 sm:px-6 lg:px-8 border-t border-slate-800/80">
-          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-slate-900 via-slate-850 to-slate-900 border border-emerald-500/30 p-8 sm:p-12 shadow-2xl flex flex-col md:flex-row items-center gap-8">
-            <div className="relative group shrink-0">
-              <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-emerald-500 to-teal-500 blur-md opacity-60 group-hover:opacity-100 transition duration-500"></div>
-              <div className="relative w-36 h-48 sm:w-44 sm:h-56 rounded-2xl overflow-hidden border-2 border-emerald-400 shadow-xl bg-slate-800">
-                <img
-                  src="/developer-madhav.jpg"
-                  alt="Madhav Kohli"
-                  className="w-full h-full object-cover object-top hover:scale-105 transition duration-500"
-                />
-              </div>
-            </div>
-
-            <div className="flex-1 text-center md:text-left space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-                <User size={14} /> Meet the Developer
-              </div>
-
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                Madhav Kohli
-              </h3>
-
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                B.Tech in Computer Science at Seth Jai Parkash Mukand Lal Institute of Engineering & Technology (CGPA: 7.6). Former Web Development Intern at Nirikshan AI and Oops InfoSolutions with 300+ DSA problems solved and 2x Smart India Hackathon qualifier.
-              </p>
-
-              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                <span className="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">
-                  Node.js & Express
-                </span>
-                <span className="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">
-                  React.js & Tailwind
-                </span>
-                <span className="px-3 py-1 rounded-lg bg-slate-800 text-xs text-slate-200 border border-slate-700">
-                  MongoDB Atlas
-                </span>
-                <span className="px-3 py-1 rounded-lg bg-slate-800 text-xs text-emerald-400 border border-emerald-500/30 font-semibold">
-                  300+ DSA Solved
-                </span>
-              </div>
-
-              <div className="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
-                <button
-                  type="button"
-                  onClick={() => setShowDevModal(true)}
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-500/20 transition cursor-pointer"
-                >
-                  <Volume2 size={16} />
-                  <span>Hear Voice Bio & Full Profile</span>
-                </button>
               </div>
             </div>
           </div>

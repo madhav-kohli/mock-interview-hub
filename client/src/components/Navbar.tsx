@@ -6,7 +6,6 @@ import { setUserData, updateCredits } from "../redux/userSlice.ts";
 import { api } from "../services/api.ts";
 import { AuthModal } from "./AuthModal.tsx";
 import { TeacherRubricModal } from "./TeacherRubricModal.tsx";
-import { DeveloperModal } from "./DeveloperModal.tsx";
 import {
   Bot,
   Coins,
@@ -16,14 +15,11 @@ import {
   GraduationCap,
   Sparkles,
   ChevronDown,
-  Layers,
   Award,
   UserCheck,
   CreditCard,
   Menu,
-  X,
-  Code2,
-  User
+  X
 } from "lucide-react";
 
 export const Navbar: React.FC = () => {
@@ -34,7 +30,6 @@ export const Navbar: React.FC = () => {
 
   const [showAuthModal, setShowAuthModal] = useState(false);
   const [showRubricModal, setShowRubricModal] = useState(false);
-  const [showDevModal, setShowDevModal] = useState(false);
   const [showUserDropdown, setShowUserDropdown] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -140,20 +135,6 @@ export const Navbar: React.FC = () => {
 
             {/* Right side controls */}
             <div className="flex items-center gap-3">
-              {/* Developer Profile Pill Button */}
-              <button
-                type="button"
-                onClick={() => setShowDevModal(true)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-gradient-to-r from-emerald-500/20 via-teal-500/10 to-slate-900 border border-emerald-500/40 hover:border-emerald-400 text-xs font-bold text-white transition shadow-sm group cursor-pointer"
-                title="View Developer Profile: Madhav Kohli"
-              >
-                <div className="w-5 h-5 rounded-full overflow-hidden border border-emerald-400 shrink-0">
-                  <img src="/developer-madhav.jpg" alt="Madhav Kohli" className="w-full h-full object-cover object-top" />
-                </div>
-                <span className="hidden sm:inline text-emerald-300 group-hover:text-emerald-200">Developer</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping hidden sm:inline"></span>
-              </button>
-
               {/* Credits counter */}
               <div className="relative group">
                 <Link
@@ -222,18 +203,6 @@ export const Navbar: React.FC = () => {
                         >
                           <History size={14} className="text-emerald-400" />
                           <span>Interview History & Reports</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setShowUserDropdown(false);
-                            setShowDevModal(true);
-                          }}
-                          className="w-full flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-slate-800 text-emerald-300 transition text-left cursor-pointer"
-                        >
-                          <User size={14} className="text-emerald-400" />
-                          <span>About Developer (Madhav Kohli)</span>
                         </button>
 
                         <button
@@ -351,16 +320,6 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
-                setShowDevModal(true);
-              }}
-              className="w-full text-left px-3 py-2 rounded-xl text-sm font-semibold text-emerald-300 hover:bg-slate-800 flex items-center gap-2 cursor-pointer"
-            >
-              <User size={15} /> Developer Info (Madhav Kohli)
-            </button>
-            <button
-              type="button"
-              onClick={() => {
-                setMobileMenuOpen(false);
                 setShowRubricModal(true);
               }}
               className="w-full text-left px-3 py-2 rounded-xl text-sm font-semibold text-teal-300 hover:bg-slate-800 cursor-pointer"
@@ -374,7 +333,6 @@ export const Navbar: React.FC = () => {
       {/* Modals */}
       <AuthModal isOpen={showAuthModal} onClose={() => setShowAuthModal(false)} />
       <TeacherRubricModal isOpen={showRubricModal} onClose={() => setShowRubricModal(false)} />
-      <DeveloperModal isOpen={showDevModal} onClose={() => setShowDevModal(false)} />
     </>
   );
 };
