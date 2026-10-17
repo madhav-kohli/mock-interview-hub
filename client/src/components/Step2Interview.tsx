@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { InterviewSession, QuestionData, api } from "../services/api.ts";
 import Timer from "./Timer.tsx";
+import femaleVideo from "../assets/videos/female-ai.mp4";
+import maleVideo from "../assets/videos/male-ai.mp4";
 import {
   Mic,
   MicOff,
@@ -16,7 +18,8 @@ import {
   AlertCircle,
   HelpCircle,
   Clock,
-  Award
+  Award,
+  UserCheck
 } from "lucide-react";
 
 interface Step2InterviewProps {
@@ -29,6 +32,7 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
   const [answer, setAnswer] = useState("");
   const [isMicOn, setIsMicOn] = useState(false);
   const [isAIPlaying, setIsAIPlaying] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const [subtitle, setSubtitle] = useState("");
   const [timeLeft, setTimeLeft] = useState(60);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,9 +50,11 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
   const questions = interviewData.questions || [];
   const currentQuestion: QuestionData | undefined = questions[currentIndex];
 
-  // Select video source based on role or mode
-  const isFemaleInterviewer = interviewData.mode === "HR" || (interviewData.interviewer && interviewData.interviewer.includes("Sarah"));
-  const videoSource = isFemaleInterviewer ? "/src/assets/videos/female-ai.mp4" : "/src/assets/videos/male-ai.mp4";
+  // Select video source safely via bundled module imports
+  const isFemaleInterviewer =
+    interviewData.mode === "HR" ||
+    (interviewData.interviewer && interviewData.interviewer.toLowerCase().includes("sarah"));
+  const videoSource = isFemaleInterviewer ? femaleVideo : maleVideo;
 
   // Speech Synthesis helper
   const speakText = (text: string): Promise<void> => {
@@ -64,7 +70,7 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
 
       utterance.onstart = () => {
         setIsAIPlaying(true);
-        if (videoRef.current) {
+        if (videoRef.current && !videoError) {
           videoRef.current.play().catch(() => {});
         }
       };
@@ -276,16 +282,55 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Left Column: AI Video Avatar & Timer (5 cols) */}
         <div className="lg:col-span-5 space-y-6">
-          {/* Avatar Video Container */}
-          <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-slate-800 shadow-2xl aspect-video lg:aspect-4/3 flex items-center justify-center group">
-            <video
-              ref={videoRef}
-              src={videoSource}
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            />
+          {/* Avatar Video / High-Tech Animation Container */}
+          <div className="relative rounded-3xl overflow-hidden bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border border-slate-800 shadow-2xl aspect-video lg:aspect-4/3 flex items-center justify-center group">
+            {!videoError ? (
+              <video
+                ref={videoRef}
+                src={videoSource}
+                loop
+                muted
+                playsInline
+                autoPlay
+                onError={() => setVideoError(true)}
+                className="w-full h-full object-cover"
+              />
+            ) : null}
+
+            {/* Seamless Animated High-Tech Avatar Fallback (Active if video fails or when AI speaks) */}
+            {videoError && (
+              <div className="flex flex-col items-center justify-center p-6 text-center">
+                <div className="relative mb-4">
+                  {/* Outer pulsating aura */}
+                  <div
+                    className={`absolute inset-0 rounded-full blur-xl transition-all duration-700 ${
+                      isAIPlaying
+                        ? "bg-emerald-500/40 scale-125 animate-pulse"
+                        : "bg-teal-500/20 scale-100"
+                    }`}
+                  ></div>
+
+                  {/* High-tech Avatar Circle */}
+                  <div className="relative w-28 h-28 rounded-full bg-gradient-to-tr from-slate-800 via-slate-850 to-emerald-950/80 border-2 border-emerald-500/40 flex items-center justify-center shadow-2xl overflow-hidden">
+                    <span className="text-5xl select-none">
+                      {isFemaleInterviewer ? "👩‍💼" : "👨‍💻"}
+                    </span>
+
+                    {/* Animated speaking ripple ring */}
+                    {isAIPlaying && (
+                      <span className="absolute inset-0 rounded-full border-2 border-emerald-400 animate-ping opacity-60"></span>
+                    )}
+                  </div>
+                </div>
+
+                <h4 className="text-white font-bold text-base">
+                  {interviewData.interviewer || "AI Evaluator"}
+                </h4>
+                <p className="text-xs text-emerald-400 font-medium">
+                  {isAIPlaying ? "Speaking question prompt..." : "Listening attentively"}
+                </p>
+              </div>
+            )}
 
             {/* Speaking Status Pill */}
             <div className="absolute top-4 left-4 z-10 flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/10 text-xs font-medium text-white">
@@ -324,7 +369,7 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
               <button
                 type="button"
                 onClick={() => currentQuestion && speakText(currentQuestion.question)}
-                className="text-[11px] text-emerald-400 hover:text-emerald-300 flex items-center gap-1"
+                className="text-[11px] text-emerald-400 hover:text-emerald-300 flex items-center gap-1 cursor-pointer"
               >
                 <RotateCcw size={12} /> Replay Audio
               </button>
@@ -408,7 +453,7 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
                 <button
                   type="button"
                   onClick={toggleMic}
-                  className={`w-full sm:w-auto px-5 py-3.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition ${
+                  className={`w-full sm:w-auto px-5 py-3.5 rounded-2xl text-xs font-bold flex items-center justify-center gap-2 transition cursor-pointer ${
                     isMicOn
                       ? "bg-red-500 hover:bg-red-600 text-white shadow-lg shadow-red-500/30 animate-pulse"
                       : "bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700"
@@ -431,7 +476,7 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
                   type="button"
                   disabled={isSubmitting || !answer.trim()}
                   onClick={handleSubmitAnswer}
-                  className="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-500/20 transition disabled:opacity-50"
+                  className="w-full sm:flex-1 py-3.5 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-500/20 transition disabled:opacity-50 cursor-pointer"
                 >
                   <Send size={16} />
                   {isSubmitting ? "Evaluating Answer with AI..." : "Submit Candidate Answer"}
@@ -475,7 +520,7 @@ export const Step2Interview: React.FC<Step2InterviewProps> = ({ interviewData, o
                 <button
                   type="button"
                   onClick={handleProceedNext}
-                  className="w-full py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20"
+                  className="w-full py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20 cursor-pointer"
                 >
                   <span>
                     {currentIndex + 1 < questions.length ? "Next Question" : "Complete & Generate Final Report"}
