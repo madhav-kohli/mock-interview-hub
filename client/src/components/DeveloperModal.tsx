@@ -51,7 +51,7 @@ export const DeveloperModal: React.FC<DeveloperModalProps> = ({ isOpen, onClose 
                   title="Click to view full photo"
                 >
                   <img
-                    src="/developer-madhav.jpg"
+                    src="/developer-madhav.jpeg"
                     alt="Madhav Kohli"
                     className="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500"
                   />
