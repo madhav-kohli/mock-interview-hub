@@ -83,8 +83,8 @@ Make sure you have:
 ### 📥 1. Clone the repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd <YOUR_REPOSITORY_FOLDER>
+git clone https://github.com/madhav-kohli/mock-interview-hub.git
+
 ```
 
 Replace the placeholders with your actual GitHub repository URL and folder name.
