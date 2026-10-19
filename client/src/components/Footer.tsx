@@ -21,7 +21,7 @@ export const Footer: React.FC = () => {
                   <Bot size={20} />
                 </div>
                 <span className="text-lg font-bold text-white tracking-tight">
-                  Interview<span className="text-emerald-400">IQ</span>.AI
+                  MockInterview<span className="text-emerald-400">Hub</span>
                 </span>
               </div>
               <p className="text-slate-400 text-xs leading-relaxed max-w-md">

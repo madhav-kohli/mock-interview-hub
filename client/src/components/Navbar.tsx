@@ -69,7 +69,7 @@ export const Navbar: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="font-extrabold text-lg sm:text-xl text-white tracking-tight">
-                      Interview<span className="text-emerald-400">IQ</span>
+                      MockInterview<span className="text-emerald-400">Hub</span>
                     </span>
                     <span className="px-2 py-0.5 text-[10px] font-bold rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">
                       AI Studio
