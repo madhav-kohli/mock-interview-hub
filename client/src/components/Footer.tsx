@@ -120,7 +120,7 @@ export const Footer: React.FC = () => {
           {/* ================= CLEAN SIMPLE BUTTON AT THE VERY BOTTOM ================= */}
           <div className="pt-6 pb-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-800/80">
             <p className="text-[11px] text-slate-500 text-center sm:text-left">
-              &copy; {new Date().getFullYear()} InterviewIQ.AI &bull; Full-Stack Capstone Project.
+              &copy; {new Date().getFullYear()} MockInterviewHub &bull; Full-Stack Capstone Project.
             </p>
 
             {/* The single clean "Know the Developer" Button */}

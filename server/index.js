@@ -43,7 +43,7 @@ app.use("/api/interview", interviewRouter)
 app.use("/api/payment", paymentRouter)
 
 app.get("/health", (req, res) => {
-    res.json({ status: "healthy", service: "InterviewIQ Backend" });
+    res.json({ status: "healthy", service: "MockInterviewHub Backend" });
 });
 
 const PORT = process.env.PORT || 6000

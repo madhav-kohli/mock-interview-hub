@@ -248,7 +248,7 @@ export default function Home() {
                 End-To-End Architecture
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mt-2">
-                How InterviewIQ Simulates Real Hiring
+                How MockInterviewHub Simulates Real Hiring
               </h2>
               <p className="text-slate-400 text-sm mt-3">
                 From resume upload to live voice answers and official PDF scorecard generation in 3 seamless steps.

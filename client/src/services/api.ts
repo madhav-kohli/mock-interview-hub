@@ -1,4 +1,4 @@
-// InterviewIQ Full-Stack API Engine & Hybrid Backend Client
+// MockInterviewHub Full-Stack API Engine & Hybrid Backend Client
 // Connects seamlessly to remote backend or runs with local persistence
 
 export interface QuestionData {
@@ -30,9 +30,9 @@ export interface InterviewSession {
 }
 
 const STORAGE_KEYS = {
-  USER: "interviewiq_user",
-  INTERVIEWS: "interviewiq_interviews",
-  CUSTOM_SERVER: "interviewiq_server_url"
+  USER: "mockinterviewhub_user",
+  INTERVIEWS: "mockinterviewhub_interviews",
+  CUSTOM_SERVER: "mockinterviewhub_server_url"
 };
 
 // Default sample interviews for demonstration when teacher inspects Analytics

@@ -78,7 +78,7 @@ export const Step3Report: React.FC<Step3ReportProps> = ({ report, onRetake }) =>
     doc.setTextColor(255, 255, 255);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(20);
-    doc.text("InterviewIQ.AI - Candidate Evaluation Report", margin, 20);
+    doc.text("MockInterviewHub - Candidate Evaluation Report", margin, 20);
 
     doc.setFontSize(10);
     doc.setTextColor(16, 185, 129); // emerald-500
@@ -174,7 +174,7 @@ export const Step3Report: React.FC<Step3ReportProps> = ({ report, onRetake }) =>
       }
     });
 
-    doc.save(`InterviewIQ_Report_${report.role.replace(/\s+/g, "_")}.pdf`);
+    doc.save(`MockInterviewHub_Report_${report.role.replace(/\s+/g, "_")}.pdf`);
   };
 
   return (

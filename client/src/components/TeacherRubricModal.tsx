@@ -30,7 +30,7 @@ export const TeacherRubricModal: React.FC<TeacherRubricModalProps> = ({ isOpen, 
         </div>
 
         <p className="text-slate-300 text-sm leading-relaxed mb-6">
-          This project, <strong className="text-white">InterviewIQ - AI Mock Interview Hub</strong>, is an end-to-end full-stack platform designed to simulate realistic technical and HR interview scenarios using AI, speech recognition, and adaptive scoring algorithms.
+          This project, <strong className="text-white">MockInterviewHub - AI Mock Interview Hub</strong>, is an end-to-end full-stack platform designed to simulate realistic technical and HR interview scenarios using AI, speech recognition, and adaptive scoring algorithms.
         </p>
 
         <div className="grid sm:grid-cols-2 gap-4 mb-6">

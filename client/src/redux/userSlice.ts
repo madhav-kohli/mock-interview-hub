@@ -16,7 +16,7 @@ interface UserState {
 
 const loadInitialUser = (): UserData | null => {
   try {
-    const saved = localStorage.getItem("interviewiq_user");
+    const saved = localStorage.getItem("mockinterviewhub_user");
     if (saved) {
       return JSON.parse(saved);
     }
@@ -38,9 +38,9 @@ const userSlice = createSlice({
       state.userData = action.payload;
       try {
         if (action.payload) {
-          localStorage.setItem("interviewiq_user", JSON.stringify(action.payload));
+          localStorage.setItem("mockinterviewhub_user", JSON.stringify(action.payload));
         } else {
-          localStorage.removeItem("interviewiq_user");
+          localStorage.removeItem("mockinterviewhub_user");
         }
       } catch (e) {
         console.error("LocalStorage sync error", e);
@@ -49,7 +49,7 @@ const userSlice = createSlice({
     updateCredits: (state, action: PayloadAction<number>) => {
       if (state.userData) {
         state.userData.credits = action.payload;
-        localStorage.setItem("interviewiq_user", JSON.stringify(state.userData));
+        localStorage.setItem("mockinterviewhub_user", JSON.stringify(state.userData));
       }
     },
   },

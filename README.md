@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎯 InterviewIQ — AI Mock Interview Hub
+# 🎯 MockInterviewHub — AI Mock Interview Hub
 
 ### 🚀 Practise smarter. Speak confidently. Crack your next interview.
 
@@ -22,11 +22,11 @@ An AI-powered mock interview platform built to help candidates practise technica
 
 ## ✨ About the Project
 
-**InterviewIQ** is an end-to-end mock interview platform designed to simulate interview practice with AI-assisted question generation, speech capabilities, and structured performance evaluation.
+**MockInterviewHub** is an end-to-end mock interview platform designed to simulate interview practice with AI-assisted question generation, speech capabilities, and structured performance evaluation.
 
 The goal is to give candidates a convenient place to practise answering questions, experience a more interactive interview flow, and identify areas for improvement before a real interview.
 
-🔗 **Try it here:** [InterviewIQ — Live Application](https://mock-interview-hub-client.onrender.com/)
+🔗 **Try it here:** [MockInterviewHub — Live Application](https://mock-interview-hub-client.onrender.com/)
 
 ## 🌟 Key Features
 
@@ -221,9 +221,9 @@ No license has been specified in this README. Add a `LICENSE` file if you intend
 
 <div align="center">
 
-### 💙 If you find InterviewIQ useful, consider giving the repository a ⭐
+### 💙 If you find MockInterviewHub useful, consider giving the repository a ⭐
 
-**🌐 [Open InterviewIQ](https://mock-interview-hub-client.onrender.com/)**
+**🌐 [Open MockInterviewHub](https://mock-interview-hub-client.onrender.com/)**
 
 *Built to make interview practice more accessible, interactive, and effective.*
 
